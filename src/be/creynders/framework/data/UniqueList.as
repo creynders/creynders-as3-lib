@@ -1,6 +1,10 @@
 package be.creynders.framework.data
 {
 	import flash.utils.Dictionary;
+	
+	/**
+	 * @author info@creynders.be
+	 */
 
 	public class UniqueList
 	{
