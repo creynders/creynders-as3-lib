@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Tree xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="onCreationComplete()">
+	<mx:Script>
+		<![CDATA[
+			private function onCreationComplete() : void {
+				this.setStyle( 'folderClosedIcon', null );
+            	this.setStyle( 'folderOpenIcon', null );
+            	this.setStyle( 'defaultLeafIcon', null );
+			}
+		]]>
+	</mx:Script>
+	<mx:itemRenderer>
+		be.creynders.framework.controls.mxtree.MXSelectableTreeItemRenderer
+	</mx:itemRenderer>
+</mx:Tree>
