@@ -8,16 +8,21 @@ package be.creynders.framework.data
 
 	public class UniqueList
 	{
+		//--( CONSTRUCTOR )--//
+
 		public function UniqueList( idFieldName : String ){
 			_idFieldName = idFieldName;
 			_source = [];
 			_indexMap = new Dictionary();
 		}
 		
+		//--( PRIVATE PROPS )--//
+		
 		private var _idFieldName : String;
 		private var _source : Array;
 		private var _indexMap : Dictionary;
 		
+		//--( ACCESSORS )--//
 				/**
 		*/
 		private var _source : Array;
@@ -35,7 +40,13 @@ package be.creynders.framework.data
 				_indexMap[ id ] = i;
 			}
 
-		} 
+		}
+		
+		public function get length() : int{
+			return _source.length;
+		}
+		
+		//--( PUBLIC METHS )--//
 		
 		public function addItem( item : * ) : void {
 			var index : int;
@@ -56,10 +67,6 @@ package be.creynders.framework.data
 			return _indexMap[ id ] != null;
 		}
 		
-		private function _getID( item : * ) : *{
-			return item[ _idFieldName ];
-		}
-		
 		public function removeItem( item : * ) : Boolean{
 			if( hasItem( item ) ){
 				var id : * = _getID( item );
@@ -72,13 +79,16 @@ package be.creynders.framework.data
 			return false;
 		}
 		
-		public function get length() : int{
-			return _source.length;
-		}
-		
 		public function getItemAt( index : int ) : *{
 			return _source[ index ];
 		}
+		
+		//--( PRIVATE METHS )--//
+		
+		private function _getID( item : * ) : *{
+			return item[ _idFieldName ];
+		}
+		
 		
 	}
 }
