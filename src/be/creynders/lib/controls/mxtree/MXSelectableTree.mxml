@@ -10,6 +10,6 @@
 		]]>
 	</mx:Script>
 	<mx:itemRenderer>
-		be.creynders.framework.controls.mxtree.MXSelectableTreeItemRenderer
+		be.creynders.lib.controls.mxtree.MXSelectableTreeItemRenderer
 	</mx:itemRenderer>
 </mx:Tree>

@@ -1,6 +1,7 @@
 ﻿package be.creynders.lib.debug.logger {
-	import be.creynders.lib.debug.logger.ILogger;
 	import be.creynders.lib.debug.logger.ALogger;
+	import be.creynders.lib.debug.logger.ILogger;
+	import be.creynders.lib.utils.StringUtil;
 	
 
 	
@@ -63,7 +64,7 @@
 			if( enabled ){
 				trace( 	
 						separator,
-						level.name.toUpperCase(),
+						StringUtil.addTrailing( ' ', level.name.toUpperCase(), 7 ),
 						separator,
 						target,
 						params.join( ' ' )
