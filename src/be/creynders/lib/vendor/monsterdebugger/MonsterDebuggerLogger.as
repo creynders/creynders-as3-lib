@@ -1,6 +1,9 @@
-﻿package be.creynders.lib.debug.logger {
+﻿package be.creynders.lib.vendor.monsterdebugger {
 	import flash.display.DisplayObject;
 	import nl.demonsters.debugger.MonsterDebugger;
+	import be.creynders.lib.debug.logger.ALogger;
+	import be.creynders.lib.debug.logger.ILogger;
+	import be.creynders.lib.debug.logger.LogLevel;
 	
 
 	

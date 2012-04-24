@@ -1,4 +1,4 @@
-package be.creynders.lib.thirdparty.googleanalytics {
+package be.creynders.lib.vendor.googleanalytics {
 	import be.creynders.lib.net.ITracker;
 	import com.google.analytics.GATracker;
 	import flash.display.DisplayObject;
