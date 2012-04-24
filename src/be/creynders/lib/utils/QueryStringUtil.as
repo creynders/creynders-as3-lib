@@ -33,13 +33,12 @@ package be.creynders.lib.utils
 		private function readQueryString():void
 		{
 			_params = {};
-			try 
-			{
+			if( ExternalInterface.available ){
 				_all =  ExternalInterface.call( "window.location.href.toString" );
 				_queryString = ExternalInterface.call( "window.location.search.substring", 1 );
 				if(_queryString)
 				{
-				
+					
 					var params:Array = _queryString.split('&');
 					var length:uint = params.length;
 					
@@ -54,7 +53,7 @@ package be.creynders.lib.utils
 						}
 					}
 				}
-			}catch(e:Error) { trace("An error occured. Can't read the querystring."); }
+			}
 		}
 
 	}
