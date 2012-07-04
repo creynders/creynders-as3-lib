@@ -6,6 +6,7 @@ package be.creynders.lib.vendor.as3console
 	import be.creynders.lib.utils.StringUtil;
 	
 	import br.dcoder.console.Console;
+	import br.dcoder.console.ConsoleCore;
 	
 	import flash.display.Stage;
 	
@@ -26,7 +27,13 @@ package be.creynders.lib.vendor.as3console
 		}
 		private var _separator : String = '##';
 		
-		private var _console : Console;
+		private var _console : ConsoleCore;
+
+		public function get console():ConsoleCore{
+			return _console;
+		}
+		
+		
 		private var _stage : Stage;
 		
 		public function init():void{
@@ -36,14 +43,14 @@ package be.creynders.lib.vendor.as3console
 		override public function log(level:LogLevel, target:Object, params:Array):void
 		{
 			if( enabled ){
-				var message : String =	
-					separator
-					+ StringUtil.addTrailing( ' ', level.name.toUpperCase(), 7 )
-					+ separator
-					+ target
-					+ params.join( ' ' )
-				;
-				_console.println( message );
+				var messageParts : Array = [
+					separator,
+					StringUtil.addTrailing( ' ', level.name.toUpperCase(), 7 ),
+					separator,
+					target
+				];
+				messageParts = messageParts.concat( params );
+				_console.println( messageParts.join( ' ' ) );
 			}
 			
 		}
