@@ -11,6 +11,73 @@ package be.creynders.lib.utils
 		static public const Q4 : int = 3;
 		static public const NUM_QUADRANTS : int = 4;
 		
+		static public function polygonIsClosed( points : Vector.<Point> ) : Boolean{
+			var p0 : Point = points[ 0 ];
+			var pN : Point = points[ points.length -1 ];
+			return p0.x == pN.x && p0.y == pN.y;
+		}
+		
+		/**
+		 * 
+		 */
+		static public function calculateRegion( a : Point, b : Point ) : Number{
+			return ( a.x * b.y ) - ( b.x * a.y )
+		}
+		
+		/**
+		 * Must be closed polygon, i.e. last point should be the same as first
+		 * 
+		 * see http://paulbourke.net/geometry/polyarea/
+		 * 
+		 * N.B.: fails for intersecting polygons!
+		 */
+		static public function calculateArea( points : Vector.<Point> ) : Number{
+			if( ! polygonIsClosed( points ) ){
+				throw new Error( 'First and last elements should be identical' );
+			}
+			var i : int;
+			var n : int = points.length -1; //should be -1, we need to loop until the next to last element
+			var sum : Number = 0;
+			for ( i = 0; i<n; i++ ){
+				var a : Point = points[ i ];
+				var b : Point = points[ i + 1 ];
+				sum += calculateRegion( a, b );
+			}
+			return Math.abs( sum /2 );
+		}
+		
+		/**
+		 * see http://paulbourke.net/geometry/polyarea/
+		 */
+		static public function calculateCentroid( points : Vector.<Point> ) : Point{
+			if( ! polygonIsClosed( points ) ){
+				throw new Error( 'First and last elements should be identical' );
+			}
+			
+			var i : int;
+			var n : int = points.length -1; //loop till next to last element
+			var sumX : Number = 0;
+			var sumY : Number = 0;
+			var area : Number = 0;
+			for ( i = 0; i<n; i++ ){
+				var a : Point = points[ i ];
+				var b : Point = points[ i + 1 ];
+				var region : Number = calculateRegion( a, b );
+				sumX += ( a.x + b.x ) * region;
+				sumY += ( a.y + b.y ) * region;
+				area += region;
+			}
+			
+			area = area / 2;
+			var output : Point;
+			if( 0 != area ){
+				output = new Point()
+				output.x = sumX / ( 6 * area );
+				output.y = sumY / ( 6 * area );
+			}
+			return output;
+		}
+		
 		static public function degToRad( degrees : Number ) : Number{
 			return degrees * Math.PI/180;
 		}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   creationComplete="creationCompleteHandler(event)"
+			   width="1200" height="800" 
+			   minWidth="955" minHeight="600" xmlns:ns="http://www.adobe.com/2009/flexUnitUIRunner"
+			   >
+	<fx:Script>
+		<![CDATA[
+			import mx.logging.LogEventLevel;
+			
+			import org.flexunit.internals.TextListener;
+			import org.flexunit.internals.TraceListener;
+			import org.flexunit.runner.FlexUnitCore;
+			private var core:FlexUnitCore;
+			
+			private function creationCompleteHandler( event : Event ):void
+			{
+				core = new FlexUnitCore();
+				//*
+				core.addListener( uiListener );
+				core.addListener( TextListener.getDefaultTextListener( LogEventLevel.DEBUG ) );
+				/*/
+				core.addListener( new TraceListener() );
+				//*/
+				core.run( MainTestSuite );
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<ns:TestRunnerBase id="uiListener" top="0" left="0" bottom="0" right="0"/>
+</s:Application>
