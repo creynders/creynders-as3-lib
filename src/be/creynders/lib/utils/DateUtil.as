@@ -228,6 +228,10 @@
 			return d / MS_PER_DAY;
 		}
 		
+		static public function getDays( date : Date ) : Number{
+			return date.getTime() / MS_PER_DAY;
+		}
+		
 		static public function getUTCDate( year : Number, month : Number, date : Number = 1, hours : Number = 0, minutes : Number = 0, seconds : Number = 0, milliSeconds : Number = 0 ) : Date {
 			var result : Date = new Date()
 			result.setTime( Date.UTC( year, month, date, hours, minutes, seconds, milliSeconds ) );
@@ -238,8 +242,6 @@
 	 
 		static public function isValidNumDays( days : int, month : int, year : int ) : Boolean {
 			
-			trace( NAME, 'isValidNumDays', days, month, year );
-			trace( 'mofo ');
 			var maxdays : int = 0;
 			switch( month ) {
 				case 1:
