@@ -1,9 +1,11 @@
 ﻿package be.creynders.lib.vendor.monsterdebugger {
-	import flash.display.DisplayObject;
-	import nl.demonsters.debugger.MonsterDebugger;
 	import be.creynders.lib.debug.logger.ALogger;
 	import be.creynders.lib.debug.logger.ILogger;
 	import be.creynders.lib.debug.logger.LogLevel;
+	
+	import com.demonsters.debugger.MonsterDebugger;
+	
+	import flash.display.DisplayObject;
 	
 
 	
@@ -25,10 +27,9 @@
 	// CONSTRUCTOR                                                      //
 	//////////////////////////////////////////////////////////////////////
 	
-		public function MonsterDebuggerLogger() {
-			trace( this, "constructor" );
+		public function MonsterDebuggerLogger( context : Object, address : String = "127.0.0.1" ) {
 			super();
-			
+			MonsterDebugger.initialize( context, address );
 			init();
 		}
 		
@@ -127,20 +128,20 @@
 				case LogLevel.ERROR		: color = errorColor; 	break;
 				default 				: color = defaultColor;
 			}
-			MonsterDebugger.trace( target, params.join( ' ' ), color );
+			MonsterDebugger.trace( target, params.join( ' ' ), '', '', color );
 		}
 
 		
 		public function clearTraces():void {
-			MonsterDebugger.clearTraces();
+			MonsterDebugger.clear();
 		}
 		
 		public function inspect( target : Object ) : void {
 			MonsterDebugger.inspect( target );
 		}
 		
-		public function snapshot( target : DisplayObject, color : uint = 0x111111 ) : void {
-			MonsterDebugger.snapshot( target, color );
+		public function snapshot( caller : *, object: * ) : void {
+			MonsterDebugger.snapshot( caller, object );
 		}
 		
 	}//end class 
